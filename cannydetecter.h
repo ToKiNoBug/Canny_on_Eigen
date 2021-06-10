@@ -8,15 +8,16 @@
 #include "mainwindow.h"
 #include <QPalette>
 #include <QColor>
+#include <QProgressBar>
 using namespace Eigen;
-class MainWindow;
 
+class QProgressBar;
 class CannyDetecter
 {
 public:
     CannyDetecter();
-    MainWindow*parent;
-    char step;//0->Nothing,1->exported,2->Guassianed
+
+    QProgressBar* parent;
     //QImage Raw;
     //QImage *Gray;
     MatrixXi GrayPic;
@@ -37,6 +38,7 @@ public:
     int Height;
     int Width;
     void LoadGray(const QImage &);
+    void Load(const MatrixXi &);
     void GaussFilter();
     void ApplySobel();
     bool hasAppliedNonMaxDe;
@@ -45,14 +47,16 @@ public:
     void ApplyDoubleThreshold();
 
     void ApplyDoubleThreshold(float,float);
-
+    void ApplySingleThreshold(float);
     static Matrix3i GauKernel;
     static int GauKernelSum;
     static Matrix3i SobelKernelX;
     static Matrix3i SobelKernelY;
-
-private:
     void getThreshold(int&,int&,int&);
+    int OTSU(float&,float&);
+    void ApplyOTSUThreshold();
+private:
+    char step;//0->Nothing,1->exported,2->Guassianed
 };
 
 
