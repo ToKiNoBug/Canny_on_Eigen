@@ -13,9 +13,13 @@ MainWindow::MainWindow(QWidget *parent)
     Canny =new CannyDetecter;
     Canny->parent=NULL;
 
-    Canny->GauKernel<<57,94,57,
+    /*Canny->GauKernel<<57,94,57,
                                   94,155,94,
-                                  57,94,57;
+                                  57,94,57;*/
+    Canny->GauKernel<< 383,2830,383,
+                                        2830,20911,2830,
+                                        383,2830,383;
+
     Canny->GauKernelSum=Canny->GauKernel.array().sum();
     Canny->SobelKernelX<<-1,0,1,
                                         -2,0,2,
