@@ -2,7 +2,7 @@ QT       += core gui
 
 greaterThan(QT_MAJOR_VERSION, 4): QT += widgets
 
-INCLUDEPATH += D:\eigen-3.3.8
+INCLUDEPATH += D:\eigen-3.3.9
 
 CONFIG += c++11
 

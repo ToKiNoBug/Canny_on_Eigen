@@ -369,9 +369,9 @@ void CannyDetecter::ApplyDoubleThreshold(float low, float high)
     int High=high*Max;
     qDebug()<<"低阈值："<<100.0f*Low/Max<<"%；高阈值："<<100.0f*High/Max<<"%";
     //Edges;
-    Edges.setZero(Height+2,Width+2);
+    Edges=EI;
 qDebug("rue");
-    Edges=(EI.array()>Low).select(EI,0);
+    Edges=(Edges.array()>Low).select(Edges,0);
     Edges=(Edges.array()<High).select(Edges,Max);
 
 //qDebug("rua!");
@@ -384,7 +384,7 @@ qDebug("rue");
             if(!Edges(r+1,c+1)||Edges(r+1,c+1)>=High)
                 continue;
             //qDebug()<<"r="<<r<<";  c="<<c<<";";
-            Edges(r+1,c+1)=(EI.block(r,c,3,3).array()>=High).any()*Max;
+            Edges(r+1,c+1)=(EI.block(r,c,3,3).array()>=High).any()?Max:0;
         }
 
     //EI=Edges;
