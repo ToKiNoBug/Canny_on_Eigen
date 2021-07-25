@@ -98,7 +98,7 @@ void CannyDetecter::ApplySobel()
             EI_x(r,c)=Gx;
             EI_y(r,c)=Gy;
             EI(r,c)=round(sqrt(float(Gx*Gx+Gy*Gy)));
-            EdgeDir(r,c)=round((atan2(Gx,Gy)/M_PI)*180.0f);
+            EdgeDir(r,c)=round((atan2(Gy,Gx)/M_PI)*180.0f);
         }
 
     EdgeDir=(EdgeDir.array()>=0).select(EdgeDir,EdgeDir.array()+180);
